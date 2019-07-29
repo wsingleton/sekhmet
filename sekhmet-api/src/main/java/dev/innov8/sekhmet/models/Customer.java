@@ -1,5 +1,6 @@
 package dev.innov8.sekhmet.models;
 
+import java.util.List;
 import java.util.Objects;
 
 public class Customer {
@@ -7,6 +8,7 @@ public class Customer {
 	private int id;
 	private String name;
 	private PointOfContact contact;
+	private List<Facility> facilities;
 	
 	public Customer() {
 		super();
@@ -17,6 +19,14 @@ public class Customer {
 		this.id = id;
 		this.name = name;
 		this.contact = contact;
+	}
+	
+	public Customer(int id, String name, PointOfContact contact, List<Facility> facilities) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.contact = contact;
+		this.facilities = facilities;
 	}
 
 	public int getId() {
@@ -43,9 +53,17 @@ public class Customer {
 		this.contact = contact;
 	}
 
-	@Override
+	public List<Facility> getFacilities() {
+		return facilities;
+	}
+
+	public void setFacilities(List<Facility> facilities) {
+		this.facilities = facilities;
+	}
+
+		@Override
 	public int hashCode() {
-		return Objects.hash(contact, id, name);
+		return Objects.hash(contact, facilities, id, name);
 	}
 
 	@Override
@@ -57,7 +75,8 @@ public class Customer {
 		if (!(obj instanceof Customer))
 			return false;
 		Customer other = (Customer) obj;
-		return Objects.equals(contact, other.contact) && id == other.id && Objects.equals(name, other.name);
+		return Objects.equals(contact, other.contact) && Objects.equals(facilities, other.facilities) && id == other.id
+				&& Objects.equals(name, other.name);
 	}
 
 	@Override
