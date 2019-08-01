@@ -59,8 +59,8 @@ public class Register {
 	}
 	
 	public boolean isFiltered() {
-		if(this.filter== null) return false;
-		else return true;
+		if(this.filter != null) return true;
+		return false;
 	}
 
 	public double getHeight() {

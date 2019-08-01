@@ -114,6 +114,11 @@ public abstract class Device {
 	public void setFilters(List<Filter> filters) {
 		this.filters = filters;
 	}
+	
+	public boolean isFiltered() {
+		if(this.filters == null || this.filters.isEmpty()) return false;
+		else return true;
+	}
 
 	@Override
 	public int hashCode() {

@@ -62,6 +62,10 @@ public class Address {
 	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
 	}
+	
+	public String getAddressString() {
+		return this.unit + " " + this.street + " " + this.city + ", " + this.state + " " + this.zipcode;
+	}
 
 	@Override
 	public int hashCode() {
