@@ -29,7 +29,8 @@ public abstract class Device {
 	}
 
 	public Device(int id, String manuf, String model, String serial, Room room, boolean sterile, boolean hazard,
-			boolean radio, List<Filter> filters) {
+			boolean radio, List<Filter> filters) 
+	{
 		super();
 		this.id = id;
 		this.manufacturer = manuf;
