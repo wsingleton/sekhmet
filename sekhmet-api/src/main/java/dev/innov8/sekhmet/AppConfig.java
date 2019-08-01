@@ -3,8 +3,8 @@ package dev.innov8.sekhmet;
 import java.util.ArrayList;
 import java.util.List;
 
+import dev.innov8.sekhmet.models.Address;
 import dev.innov8.sekhmet.models.Customer;
-import dev.innov8.sekhmet.models.Device;
 import dev.innov8.sekhmet.models.Facility;
 import dev.innov8.sekhmet.models.Filter;
 import dev.innov8.sekhmet.models.PointOfContact;
@@ -103,7 +103,8 @@ public class AppConfig {
 
 		// Facility creation
 		List<Facility> facilities = new ArrayList<>();
-		Facility facility = new Facility(1, "Fletcher", customer, poc);
+		Address address = new Address("123", "Fletcher Avenue", "Tampa", "Florida", "33606");
+		Facility facility = new Facility(1, "Fletcher", address, customer, poc);
 		facilities.add(facility);
 
 		// Room creation
