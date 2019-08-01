@@ -3,12 +3,11 @@ package dev.innov8.sekhmet.models;
 import java.util.List;
 import java.util.Objects;
 
-public class Room {
+public class Room implements Zone {
 	
 	private int id;
 	private String name;
 	private Facility facility;
-	private String isoClass;
 	private boolean sterile;
 	private boolean hazardous;
 	private boolean radioactive;
@@ -29,26 +28,13 @@ public class Room {
 		this.hazardous = hazard;
 		this.radioactive = radio;
 	}
-	
-	public Room(int id, String name, Facility facility, String isoClass, boolean sterile, 
-			boolean hazard, boolean radio) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.facility = facility;
-		this.isoClass = isoClass;
-		this.sterile = sterile;
-		this.hazardous = hazard;
-		this.radioactive = radio;
-	}
 
-	public Room(int id, String name, Facility facility, String isoClass, boolean sterile, boolean hazard,
-			boolean radio, List<Register> registers, List<Portal> portals, List<Device> devices) {
+	public Room(int id, String name, Facility facility, boolean sterile, boolean hazard, boolean radio, 
+			List<Register> registers, List<Portal> portals, List<Device> devices) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.facility = facility;
-		this.isoClass = isoClass;
 		this.sterile = sterile;
 		this.hazardous = hazard;
 		this.radioactive = radio;
@@ -79,14 +65,6 @@ public class Room {
 
 	public void setFacility(Facility facility) {
 		this.facility = facility;
-	}
-
-	public String getIsoClass() {
-		return isoClass;
-	}
-
-	public void setIsoClass(String isoClass) {
-		this.isoClass = isoClass;
 	}
 
 	public boolean isSterile() {
@@ -139,7 +117,7 @@ public class Room {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(devices, facility, hazardous, id, isoClass, name, portals, radioactive, registers, sterile);
+		return Objects.hash(devices, facility, hazardous, id, name, portals, radioactive, registers, sterile);
 	}
 
 	@Override
@@ -152,16 +130,15 @@ public class Room {
 			return false;
 		Room other = (Room) obj;
 		return Objects.equals(devices, other.devices) && Objects.equals(facility, other.facility)
-				&& hazardous == other.hazardous && id == other.id && Objects.equals(isoClass, other.isoClass)
-				&& Objects.equals(name, other.name) && Objects.equals(portals, other.portals)
-				&& radioactive == other.radioactive && Objects.equals(registers, other.registers)
-				&& sterile == other.sterile;
+				&& hazardous == other.hazardous && id == other.id && Objects.equals(name, other.name)
+				&& Objects.equals(portals, other.portals) && radioactive == other.radioactive
+				&& Objects.equals(registers, other.registers) && sterile == other.sterile;
 	}
 
 	@Override
 	public String toString() {
-		return "Room [id=" + id + ", name=" + name + ", facility=" + facility + ", isoClass=" + isoClass + ", sterile="
-				+ sterile + ", hazardous=" + hazardous + ", radioactive=" + radioactive + "]";
+		return "Room [id=" + id + ", name=" + name + ", facility=" + facility + ", sterile=" + sterile + 
+				", hazardous=" + hazardous + ", radioactive=" + radioactive + "]";
 	}
-	
+
 }

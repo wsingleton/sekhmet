@@ -9,26 +9,29 @@ public class Register {
 	private Filter filter;
 	private double height;
 	private double width;
+	private String type;
 	
 	public Register() {
 		super();
 	}
 
-	public Register(int id, Room room, double height, double width) {
+	public Register(int id, Room room, double height, double width, String type) {
 		super();
 		this.id = id;
 		this.room = room;
 		this.height = height;
 		this.width = width;
+		this.type = type;
 	}
 
-	public Register(int id, Room room, Filter filter, double height, double width) {
+	public Register(int id, Room room, Filter filter, double height, double width, String type) {
 		super();
 		this.id = id;
 		this.room = room;
 		this.filter = filter;
 		this.height = height;
 		this.width = width;
+		this.type = type;
 	}
 
 	public int getId() {
@@ -54,6 +57,11 @@ public class Register {
 	public void setFilter(Filter filter) {
 		this.filter = filter;
 	}
+	
+	public boolean isFiltered() {
+		if(this.filter== null) return false;
+		else return true;
+	}
 
 	public double getHeight() {
 		return height;
@@ -71,9 +79,17 @@ public class Register {
 		this.width = width;
 	}
 
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(filter, height, id, room, width);
+		return Objects.hash(filter, height, id, room, type, width);
 	}
 
 	@Override
@@ -87,14 +103,14 @@ public class Register {
 		Register other = (Register) obj;
 		return Objects.equals(filter, other.filter)
 				&& Double.doubleToLongBits(height) == Double.doubleToLongBits(other.height) && id == other.id
-				&& Objects.equals(room, other.room)
+				&& Objects.equals(room, other.room) && Objects.equals(type, other.type)
 				&& Double.doubleToLongBits(width) == Double.doubleToLongBits(other.width);
 	}
 
 	@Override
 	public String toString() {
 		return "Register [id=" + id + ", room=" + room + ", filter=" + filter + ", height=" + height + ", width="
-				+ width + "]";
+				+ width + ", type=" + type + "]";
 	}
 	
 }

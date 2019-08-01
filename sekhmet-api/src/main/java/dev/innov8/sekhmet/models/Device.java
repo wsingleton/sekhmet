@@ -1,5 +1,6 @@
 package dev.innov8.sekhmet.models;
 
+import java.util.List;
 import java.util.Objects;
 
 public abstract class Device {
@@ -12,6 +13,7 @@ public abstract class Device {
 	private boolean sterile;
 	private boolean hazardous;
 	private boolean radioactive;
+	private List<Filter> filters;
 
 	public Device() {
 		super();
@@ -27,7 +29,7 @@ public abstract class Device {
 	}
 
 	public Device(int id, String manuf, String model, String serial, Room room, boolean sterile, boolean hazard,
-			boolean radio) {
+			boolean radio, List<Filter> filters) {
 		super();
 		this.id = id;
 		this.manufacturer = manuf;
@@ -37,6 +39,7 @@ public abstract class Device {
 		this.sterile = sterile;
 		this.hazardous = hazard;
 		this.radioactive = radio;
+		this.filters = filters;
 	}
 
 	public int getId() {
@@ -102,10 +105,18 @@ public abstract class Device {
 	public void setRadioactive(boolean radioactive) {
 		this.radioactive = radioactive;
 	}
+	
+	public List<Filter> getFilters() {
+		return filters;
+	}
+
+	public void setFilters(List<Filter> filters) {
+		this.filters = filters;
+	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(hazardous, id, manufacturer, model, radioactive, room, serialNumber, sterile);
+		return Objects.hash(filters, hazardous, id, manufacturer, model, radioactive, room, serialNumber, sterile);
 	}
 
 	@Override
@@ -117,10 +128,10 @@ public abstract class Device {
 		if (!(obj instanceof Device))
 			return false;
 		Device other = (Device) obj;
-		return hazardous == other.hazardous && id == other.id && Objects.equals(manufacturer, other.manufacturer)
-				&& Objects.equals(model, other.model) && radioactive == other.radioactive
-				&& Objects.equals(room, other.room) && Objects.equals(serialNumber, other.serialNumber)
-				&& sterile == other.sterile;
+		return Objects.equals(filters, other.filters) && hazardous == other.hazardous && id == other.id
+				&& Objects.equals(manufacturer, other.manufacturer) && Objects.equals(model, other.model)
+				&& radioactive == other.radioactive && Objects.equals(room, other.room)
+				&& Objects.equals(serialNumber, other.serialNumber) && sterile == other.sterile;
 	}
 
 	@Override
