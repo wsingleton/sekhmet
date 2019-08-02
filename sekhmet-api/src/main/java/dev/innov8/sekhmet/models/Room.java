@@ -3,7 +3,7 @@ package dev.innov8.sekhmet.models;
 import java.util.List;
 import java.util.Objects;
 
-public class Room implements Zone {
+public class Room {
 	
 	private int id;
 	private String name;
