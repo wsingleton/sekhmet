@@ -87,7 +87,7 @@ public class AppConfig {
 							System.out.println("\t\t\t\tFilter Manufacturer: " + registerFilter.getManufacturer());
 							System.out.println("\t\t\t\tFilter Model: " + registerFilter.getModel());
 							System.out.println("\t\t\t\tFilter Serial Number: " + registerFilter.getSerialNumber());
-							System.out.println("\t\t\t\tFilter Effective Filter Area: " + registerFilter.getEffectiveFilterArea() + "sqft");
+							System.out.println("\t\t\t\tFilter Effective Filter Area: " + registerFilter.getEffectiveFilterArea_sqft() + "sqft");
 						}
 						
 						System.out.println("\n\t\t\t+------------------------------------------------------------------+\n");
@@ -117,7 +117,7 @@ public class AppConfig {
 								System.out.println("\t\t\t\tFilter Manufacturer: " + filter.getManufacturer());
 								System.out.println("\t\t\t\tFilter Model: " + filter.getModel());
 								System.out.println("\t\t\t\tFilter Serial Number: " + filter.getSerialNumber());
-								System.out.println("\t\t\t\tFilter Effective Filter Area: " + filter.getEffectiveFilterArea() + "sqft");
+								System.out.println("\t\t\t\tFilter Effective Filter Area: " + filter.getEffectiveFilterArea_sqft() + "sqft");
 								System.out.println("\n\t\t\t\t+--------------------------------------------------------+\n");
 							}
 							
