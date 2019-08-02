@@ -12,7 +12,6 @@ import dev.innov8.sekhmet.models.PointOfContact;
 import dev.innov8.sekhmet.models.Portal;
 import dev.innov8.sekhmet.models.Register;
 import dev.innov8.sekhmet.models.Room;
-import dev.innov8.sekhmet.models.Zone;
 import dev.innov8.sekhmet.models.devices.CleanBench;
 import dev.innov8.sekhmet.models.portals.Door;
 
@@ -58,9 +57,8 @@ public class AppConfig {
 				for(Portal portal : roomPortals) {
 					System.out.println("\t\t\tPortal ID: " + portal.getId());
 					
-					List<Zone> portalRooms = portal.getZones();
-					for(Zone zone : portalRooms) {
-						Room portalRoom = (Room) zone;
+					List<Room> portalRooms = portal.getRooms();
+					for(Room portalRoom : portalRooms) {
 						System.out.println("\t\t\t\tRoom ID: " + portalRoom.getId());
 						System.out.println("\t\t\t\tRoom Name: " + portalRoom.getName() + "\n");;
 					}
@@ -157,20 +155,20 @@ public class AppConfig {
 		rooms.add(chemoRoom);
 
 		// Portal creation
-		List<Zone> portalZones = new ArrayList<>();
-		portalZones.add(anteRoom);
-		portalZones.add(externalArea);
-		Portal anteToOutside = new Door(1, portalZones);
+		List<Room> portalRooms = new ArrayList<>();
+		portalRooms.add(anteRoom);
+		portalRooms.add(externalArea);
+		Portal anteToOutside = new Door(1, portalRooms);
 
-		portalZones = new ArrayList<>();
-		portalZones.add(anteRoom);
-		portalZones.add(bufferRoom);
-		Portal bufferToAnte = new Door(2, portalZones);
+		portalRooms = new ArrayList<>();
+		portalRooms.add(anteRoom);
+		portalRooms.add(bufferRoom);
+		Portal bufferToAnte = new Door(2, portalRooms);
 
-		portalZones = new ArrayList<>();
-		portalZones.add(anteRoom);
-		portalZones.add(chemoRoom);
-		Portal chemoToAnte = new Door(3, portalZones);
+		portalRooms = new ArrayList<>();
+		portalRooms.add(anteRoom);
+		portalRooms.add(chemoRoom);
+		Portal chemoToAnte = new Door(3, portalRooms);
 
 		List<Portal> anteRoomPortals = new ArrayList<>();
 		anteRoomPortals.add(anteToOutside);
@@ -184,9 +182,9 @@ public class AppConfig {
 		chemoRoomPortals.add(chemoToAnte);
 
 		// Filter creation
-		Filter filterA = new Filter(1, "Airflow Tek", "AFT-24-48-H", "AFTSN-123456", 24.0, 48.0, 7.0278);
-		Filter filterB = new Filter(2, "Airflow Tek", "AFT-24-48-H", "AFTSN-123457", 24.0, 48.0, 7.0278);
-		Filter filterC = new Filter(3, "Airflow Tek", "AFT-24-48-H", "AFTSN-123458", 24.0, 48.0, 7.0278);
+		Filter filterA = new Filter(1, "Airflow Tek", "AFT-24-48-H", "AFTSN-123456", 24.0, 48.0, 6.0);
+		Filter filterB = new Filter(2, "Airflow Tek", "AFT-24-48-H", "AFTSN-123457", 24.0, 48.0, 6.0);
+		Filter filterC = new Filter(3, "Airflow Tek", "AFT-24-48-H", "AFTSN-123458", 24.0, 48.0, 6.0);
 
 		// Register creation
 		List<Register> bufferRoomRegisters = new ArrayList<>();
@@ -208,13 +206,13 @@ public class AppConfig {
 		chemoRoomRegisters.add(registerF);
 		
 		// Device filter and device creation
-		Filter cbSupplyFilter = new Filter(4, "Air Science", "AS-24-72-H", "AS-H-1234", 24.0, 72.0, 10.694);
+		Filter cbSupplyFilter = new Filter(4, "Air Science", "AS-24-72-H", "AS-H-1234", 24.0, 72.0, 6.0);
 		List<Filter> cbFilters = new ArrayList<>();
 		cbFilters.add(cbSupplyFilter);
 		Device bufferRoomCleanBench = new CleanBench(1, "Germfree", "BZ-6SS-RX", "6S-15-12345", bufferRoom, true, false, false, cbFilters);
 		
-		Filter bscSupplyFilter = new Filter(5, "Air Science", "AS-24-48-H", "AS-H-3344", 24.0, 48.0, 7.028);
-		Filter bscExhaustFilter = new Filter(6, "Air Science", "AS-24-24-H", "AS-H-3453", 24.0, 24.0, 3.361);
+		Filter bscSupplyFilter = new Filter(5, "Air Science", "AS-24-48-H", "AS-H-3344", 24.0, 48.0, 6.0);
+		Filter bscExhaustFilter = new Filter(6, "Air Science", "AS-24-24-H", "AS-H-3453", 24.0, 24.0, 6.0);
 		List<Filter> bscFilters = new ArrayList<>();
 		bscFilters.add(bscSupplyFilter);
 		bscFilters.add(bscExhaustFilter);
