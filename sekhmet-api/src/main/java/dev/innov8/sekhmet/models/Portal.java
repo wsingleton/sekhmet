@@ -6,16 +6,16 @@ import java.util.Objects;
 public abstract class Portal {
 	
 	private int id;
-	private List<Zone> zones;
+	private List<Room> rooms;
 
 	public Portal() {
 		super();
 	}
 
-	public Portal(int id, List<Zone> zones) {
+	public Portal(int id, List<Room> rooms) {
 		super();
 		this.id = id;
-		this.zones = zones;
+		this.rooms = rooms;
 	}
 
 	public int getId() {
@@ -26,17 +26,17 @@ public abstract class Portal {
 		this.id = id;
 	}
 
-	public List<Zone> getZones() {
-		return zones;
+	public List<Room> getRooms() {
+		return rooms;
 	}
 
-	public void setZones(List<Zone> zones) {
-		this.zones = zones;
+	public void setRooms(List<Room> rooms) {
+		this.rooms = rooms;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, zones);
+		return Objects.hash(id, rooms);
 	}
 
 	@Override
@@ -48,12 +48,12 @@ public abstract class Portal {
 		if (!(obj instanceof Portal))
 			return false;
 		Portal other = (Portal) obj;
-		return id == other.id && Objects.equals(zones, other.zones);
+		return id == other.id && Objects.equals(rooms, other.rooms);
 	}
 
 	@Override
 	public String toString() {
-		return "Portal [id=" + id + ", zones=" + zones + "]";
+		return "Portal [id=" + id + ", rooms=" + rooms + "]";
 	}
 
 }
