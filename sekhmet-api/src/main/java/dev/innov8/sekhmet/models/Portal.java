@@ -3,9 +3,24 @@ package dev.innov8.sekhmet.models;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public abstract class Portal {
 	
+	@Id
 	private int id;
+	
+	@JoinTable(
+		name="PORTAL_ROOMS",
+		joinColumns=@JoinColumn(name="ROOM_A_ID"),
+		inverseJoinColumns=@JoinColumn(name="ROOM_B_ID")
+	)
+	@ManyToMany
 	private List<Room> rooms;
 
 	public Portal() {
