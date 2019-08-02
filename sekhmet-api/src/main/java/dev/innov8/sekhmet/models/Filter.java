@@ -10,14 +10,14 @@ public class Filter {
 	private String serialNumber;
 	private double frameWidth;
 	private double frameHeight;
-	private double effectiveFilterArea;
+	private double frameDepth;
 	
 	public Filter() {
 		super();
 	}
 
 	public Filter(int id, String manufacturer, String model, String serialNumber, double frameWidth, double frameHeight,
-			double effectiveFilterArea) {
+			double frameDepth) {
 		super();
 		this.id = id;
 		this.manufacturer = manufacturer;
@@ -25,7 +25,7 @@ public class Filter {
 		this.serialNumber = serialNumber;
 		this.frameWidth = frameWidth;
 		this.frameHeight = frameHeight;
-		this.effectiveFilterArea = effectiveFilterArea;
+		this.frameDepth = frameDepth;
 	}
 
 	public int getId() {
@@ -76,17 +76,21 @@ public class Filter {
 		this.frameHeight = frameHeight;
 	}
 
-	public double getEffectiveFilterArea() {
-		return effectiveFilterArea;
+	public double getFrameDepth() {
+		return frameDepth;
 	}
 
-	public void setEffectiveFilterArea(double effectiveFilterArea) {
-		this.effectiveFilterArea = effectiveFilterArea;
+	public void setFrameDepth(double frameDepth) {
+		this.frameDepth = frameDepth;
+	}
+
+	public double getEffectiveFilterArea_sqft() {
+		return (frameWidth - 2) * (frameHeight - 2) / 144;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(effectiveFilterArea, frameHeight, frameWidth, id, manufacturer, model, serialNumber);
+		return Objects.hash(frameDepth, frameHeight, frameWidth, id, manufacturer, model, serialNumber);
 	}
 
 	@Override
@@ -98,7 +102,7 @@ public class Filter {
 		if (!(obj instanceof Filter))
 			return false;
 		Filter other = (Filter) obj;
-		return Double.doubleToLongBits(effectiveFilterArea) == Double.doubleToLongBits(other.effectiveFilterArea)
+		return Double.doubleToLongBits(frameDepth) == Double.doubleToLongBits(other.frameDepth)
 				&& Double.doubleToLongBits(frameHeight) == Double.doubleToLongBits(other.frameHeight)
 				&& Double.doubleToLongBits(frameWidth) == Double.doubleToLongBits(other.frameWidth) && id == other.id
 				&& Objects.equals(manufacturer, other.manufacturer) && Objects.equals(model, other.model)
@@ -108,8 +112,8 @@ public class Filter {
 	@Override
 	public String toString() {
 		return "Filter [id=" + id + ", manufacturer=" + manufacturer + ", model=" + model + ", serialNumber="
-				+ serialNumber + ", frameWidth=" + frameWidth + ", frameHeight=" + frameHeight
-				+ ", effectiveFilterArea=" + effectiveFilterArea + "]";
+				+ serialNumber + ", frameWidth=" + frameWidth + ", frameHeight=" + frameHeight + ", frameDepth="
+				+ frameDepth + "]";
 	}
-
+	
 }
