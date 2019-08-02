@@ -2,6 +2,9 @@ package dev.innov8.sekhmet.models;
 
 import java.util.Objects;
 
+import javax.persistence.Embeddable;
+
+@Embeddable
 public class Address {
 	
 	private String unit;
