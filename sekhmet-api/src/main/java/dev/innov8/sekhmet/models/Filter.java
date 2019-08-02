@@ -2,14 +2,32 @@ package dev.innov8.sekhmet.models;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Filter {
 	
+	@Id
 	private int id;
+	
+	@Column
 	private String manufacturer;
+	
+	@Column
 	private String model;
+	
+	@Column
 	private String serialNumber;
+	
+	@Column
 	private double frameWidth;
+	
+	@Column
 	private double frameHeight;
+	
+	@Column
 	private double frameDepth;
 	
 	public Filter() {
