@@ -3,6 +3,9 @@ package dev.innov8.sekhmet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 import dev.innov8.sekhmet.models.Address;
 import dev.innov8.sekhmet.models.Customer;
 import dev.innov8.sekhmet.models.Device;
@@ -15,10 +18,15 @@ import dev.innov8.sekhmet.models.Room;
 import dev.innov8.sekhmet.models.devices.CleanBench;
 import dev.innov8.sekhmet.models.portals.Door;
 
+@SpringBootApplication
 public class AppConfig {
 
 	public static void main(String[] args) {
-
+		test();
+		SpringApplication.run(AppConfig.class, args);
+	}
+	
+	private static void test() {
 		Customer customer = setUp();
 
 		System.out.println("Customer ID: " + customer.getId());
@@ -130,7 +138,6 @@ public class AppConfig {
 				System.out.println("\t\t+------------------------------------------------------------------------+\n");
 			}
 		}
-
 	}
 
 	private static Customer setUp() {
