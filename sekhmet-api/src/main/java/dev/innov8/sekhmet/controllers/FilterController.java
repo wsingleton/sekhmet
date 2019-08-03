@@ -50,6 +50,11 @@ public class FilterController {
 		System.out.println(serialNumber);
 		return filterService.getFilterBySerialNumber(serialNumber);
 	}
+	
+	@GetMapping(value="register/{registerId}", produces=MediaType.APPLICATION_JSON_VALUE)
+	public Filter getFilterByRegisterId(@PathVariable int registerId) {
+		return filterService.getFilterByRegisterId(registerId);
+	}
 		
 	@PostMapping(produces=MediaType.APPLICATION_JSON_VALUE, consumes=MediaType.APPLICATION_JSON_VALUE)
 	public Filter addNewFilter(@RequestBody Filter newFilter) {
