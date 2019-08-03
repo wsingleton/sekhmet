@@ -25,10 +25,16 @@ import dev.innov8.sekhmet.repositories.RegisterRepository;
 public class RegisterService {
 
 	private RegisterRepository registerRepo;
+	private RoomService roomService;
 	
 	@Autowired
 	public RegisterService(RegisterRepository repo) {
 		this.registerRepo = repo;
+	}
+	
+	@Autowired
+	public void setRoomService(RoomService service) {
+		this.roomService = service;
 	}
 	
 	@Transactional(readOnly=true)
@@ -39,6 +45,12 @@ public class RegisterService {
 	@Transactional(readOnly=true)
 	public List<Register> getRegistersByType(String type) {
 		return registerRepo.findByType(type);
+	}
+	
+	@Transactional(readOnly=true)
+	public List<Register> getRegistersByRoomId(int roomId) {
+		if(roomId < 1) throw new RuntimeException("Invalid Register id provided!");
+		return roomService.getRoomById(roomId).getRegisters();
 	}
 	
 	@Transactional(readOnly=true)

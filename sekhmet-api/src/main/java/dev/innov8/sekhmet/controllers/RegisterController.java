@@ -36,6 +36,11 @@ public class RegisterController {
 		return registerService.getRegistersByType(type);
 	}
 	
+	@GetMapping(value="room/{roomId}", produces=MediaType.APPLICATION_JSON_VALUE)
+	public List<Register> getRegistersByRoomId(@PathVariable int roomId) {
+		return registerService.getRegistersByRoomId(roomId);
+	}
+	
 	@GetMapping(value="id/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
 	public Register getRegisterById(@PathVariable int id) {
 		return registerService.getRegisterById(id);
