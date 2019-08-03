@@ -17,9 +17,6 @@ import dev.innov8.sekhmet.repositories.FilterRepository;
  *
  *	2) Add the following methods:
  *		
- *		public List<Filter> getFiltersByRoomId(int roomId)
- *		public List<Filter> getFiltersByFacilityId(int facilityId)
- *		public List<Filter> getFiltersByCustomerId(int customerId)
  *		public List<Filter> getFiltersByDeviceId(int deviceId) 
  *
  *	3) Write a test suite for this class

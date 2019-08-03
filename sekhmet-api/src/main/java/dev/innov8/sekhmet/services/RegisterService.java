@@ -10,6 +10,17 @@ import org.springframework.transaction.annotation.Transactional;
 import dev.innov8.sekhmet.models.Register;
 import dev.innov8.sekhmet.repositories.RegisterRepository;
 
+/*	
+ *	TODO: 
+ *	
+ *	1) Add documentation to this class.
+ *
+ *	2) Add the following methods:
+ *		
+ *		public List<Filter> getRegistersByRoomId(int roomId) 
+ *
+ *	3) Write a test suite for this class
+ */
 @Service
 public class RegisterService {
 
