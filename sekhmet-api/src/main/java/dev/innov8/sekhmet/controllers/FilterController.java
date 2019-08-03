@@ -47,7 +47,6 @@ public class FilterController {
 	
 	@GetMapping(value="serial/{serialNumber}", produces=MediaType.APPLICATION_JSON_VALUE)
 	public Filter getFilterBySerialNumber(@PathVariable String serialNumber) {
-		System.out.println(serialNumber);
 		return filterService.getFilterBySerialNumber(serialNumber);
 	}
 	
