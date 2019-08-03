@@ -6,10 +6,11 @@ import javax.persistence.Entity;
 import dev.innov8.sekhmet.models.Portal;
 
 @Entity
-@DiscriminatorValue("door")
-public class Door extends Portal {
+@DiscriminatorValue("opening")
+public class Opening extends Portal {
 
-	public Door(int id) {
+	public Opening(int id) {
 		super(id);
 	}
+	
 }

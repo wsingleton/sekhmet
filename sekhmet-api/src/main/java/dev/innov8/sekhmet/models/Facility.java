@@ -3,13 +3,34 @@ package dev.innov8.sekhmet.models;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+@Entity
 public class Facility {
 	
+	@Id
 	private int id;
+	
+	@Column
 	private String name;
+	
+	@Embedded
 	private Address address;
+	
+	@OneToOne
+	@JoinColumn
 	private Customer owner;
+	
+	@Embedded
 	private PointOfContact contact;
+	
+	@OneToMany
 	private List<Room> rooms;
 
 	public Facility() {

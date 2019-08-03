@@ -3,16 +3,52 @@ package dev.innov8.sekhmet.models;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+import dev.innov8.sekhmet.models.portals.Door;
+
+@Entity
 public class Room {
 	
+	@Id
 	private int id;
+	
+	@Column
 	private String name;
+	
+	@OneToOne
+	@JoinColumn
 	private Facility facility;
+	
+	@Column
 	private boolean sterile;
+	
+	@Column
 	private boolean hazardous;
+	
+	@Column
 	private boolean radioactive;
+	
+	@OneToMany
 	private List<Register> registers;
-	private List<Portal> portals;
+	
+	@JoinTable(
+		name="ROOM_DOORS",
+		joinColumns=@JoinColumn(name="ROOM_ID"),
+		inverseJoinColumns=@JoinColumn(name="DOOR_ID")
+		
+	)	
+	@ManyToMany
+	private List<Door> doors;
+	
+	@OneToMany
 	private List<Device> devices;
 
 	public Room() {
@@ -30,7 +66,7 @@ public class Room {
 	}
 
 	public Room(int id, String name, Facility facility, boolean sterile, boolean hazard, boolean radio, 
-			List<Register> registers, List<Portal> portals, List<Device> devices) {
+			List<Register> registers, List<Door> doors, List<Device> devices) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -39,7 +75,7 @@ public class Room {
 		this.hazardous = hazard;
 		this.radioactive = radio;
 		this.registers = registers;
-		this.portals = portals;
+		this.doors = doors;
 		this.devices = devices;
 	}
 
@@ -99,12 +135,12 @@ public class Room {
 		this.registers = registers;
 	}
 
-	public List<Portal> getPortals() {
-		return portals;
+	public List<Door> getDoors() {
+		return doors;
 	}
 
-	public void setPortals(List<Portal> portals) {
-		this.portals = portals;
+	public void setDoors(List<Door> doors) {
+		this.doors = doors;
 	}
 
 	public List<Device> getDevices() {
@@ -117,7 +153,7 @@ public class Room {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(devices, facility, hazardous, id, name, portals, radioactive, registers, sterile);
+		return Objects.hash(devices, facility, hazardous, id, name, doors, radioactive, registers, sterile);
 	}
 
 	@Override
@@ -131,7 +167,7 @@ public class Room {
 		Room other = (Room) obj;
 		return Objects.equals(devices, other.devices) && Objects.equals(facility, other.facility)
 				&& hazardous == other.hazardous && id == other.id && Objects.equals(name, other.name)
-				&& Objects.equals(portals, other.portals) && radioactive == other.radioactive
+				&& Objects.equals(doors, other.doors) && radioactive == other.radioactive
 				&& Objects.equals(registers, other.registers) && sterile == other.sterile;
 	}
 

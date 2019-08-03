@@ -2,13 +2,33 @@ package dev.innov8.sekhmet.models;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
+@Entity
 public class Register {
 	
+	@Id
 	private int id;
+	
+	@OneToOne
+	@JoinColumn
 	private Room room;
+	
+	@OneToOne
+	@JoinColumn
 	private Filter filter;
+	
+	@Column
 	private double height;
+	
+	@Column
 	private double width;
+	
+	@Column
 	private String type;
 	
 	public Register() {

@@ -1,16 +1,15 @@
 package dev.innov8.sekhmet.models.portals;
 
-import java.util.List;
-
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 import dev.innov8.sekhmet.models.Portal;
-import dev.innov8.sekhmet.models.Room;
 
 @Entity
+@DiscriminatorValue("pass-through")
 public class PassThrough extends Portal {
 
-	public PassThrough(int id, List<Room> rooms) {
-		super(id, rooms);
+	public PassThrough(int id) {
+		super(id);
 	}
 }

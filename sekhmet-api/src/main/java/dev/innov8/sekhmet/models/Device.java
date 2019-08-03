@@ -3,16 +3,47 @@ package dev.innov8.sekhmet.models;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
+@Entity
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name="DEVICE_TYPE")
 public abstract class Device {
 
+	@Id
 	private int id;
+	
+	@Column
 	private String manufacturer;
+	
+	@Column
 	private String model;
+	
+	@Column
 	private String serialNumber;
+	
+	@OneToOne
+	@JoinColumn
 	private Room room;
+	
+	@Column
 	private boolean sterile;
+	
+	@Column
 	private boolean hazardous;
+	
+	@Column
 	private boolean radioactive;
+	
+	@OneToMany
 	private List<Filter> filters;
 
 	public Device() {

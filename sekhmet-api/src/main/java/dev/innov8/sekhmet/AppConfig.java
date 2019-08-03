@@ -61,15 +61,9 @@ public class AppConfig {
 				System.out.println("\n\t\t" + room.getName() + " Portals");
 				System.out.println("\t\t+-------------------------------------------------------------------------+\n");
 				
-				List<Portal> roomPortals = room.getPortals();
+				List<? extends Portal> roomPortals = room.getDoors();
 				for(Portal portal : roomPortals) {
 					System.out.println("\t\t\tPortal ID: " + portal.getId());
-					
-					List<Room> portalRooms = portal.getRooms();
-					for(Room portalRoom : portalRooms) {
-						System.out.println("\t\t\t\tRoom ID: " + portalRoom.getId());
-						System.out.println("\t\t\t\tRoom Name: " + portalRoom.getName() + "\n");;
-					}
 					System.out.println("\t\t\t+-----------------------------------------------------------------+\n");
 				}
 				
@@ -156,37 +150,25 @@ public class AppConfig {
 		Room anteRoom = new Room(1, "Ante Room", facility, true, false, false);
 		Room bufferRoom = new Room(2, "Buffer Room", facility, true, false, false);
 		Room chemoRoom = new Room(3, "Chemo Room", facility, true, true, false);
-		Room externalArea = new Room(4, "External Area", facility, false, false, false);
 		rooms.add(anteRoom);
 		rooms.add(bufferRoom);
 		rooms.add(chemoRoom);
 
 		// Portal creation
-		List<Room> portalRooms = new ArrayList<>();
-		portalRooms.add(anteRoom);
-		portalRooms.add(externalArea);
-		Portal anteToOutside = new Door(1, portalRooms);
+		Door anteToOutside = new Door(1);
+		Door bufferToAnte = new Door(2);
+		Door chemoToAnte = new Door(3);
 
-		portalRooms = new ArrayList<>();
-		portalRooms.add(anteRoom);
-		portalRooms.add(bufferRoom);
-		Portal bufferToAnte = new Door(2, portalRooms);
+		List<Door> anteRoomDoors = new ArrayList<>();
+		anteRoomDoors.add(anteToOutside);
+		anteRoomDoors.add(bufferToAnte);
+		anteRoomDoors.add(chemoToAnte);
 
-		portalRooms = new ArrayList<>();
-		portalRooms.add(anteRoom);
-		portalRooms.add(chemoRoom);
-		Portal chemoToAnte = new Door(3, portalRooms);
+		List<Door> bufferRoomDoors = new ArrayList<>();
+		bufferRoomDoors.add(bufferToAnte);
 
-		List<Portal> anteRoomPortals = new ArrayList<>();
-		anteRoomPortals.add(anteToOutside);
-		anteRoomPortals.add(bufferToAnte);
-		anteRoomPortals.add(chemoToAnte);
-
-		List<Portal> bufferRoomPortals = new ArrayList<>();
-		bufferRoomPortals.add(bufferToAnte);
-
-		List<Portal> chemoRoomPortals = new ArrayList<>();
-		chemoRoomPortals.add(chemoToAnte);
+		List<Door> chemoRoomDoors = new ArrayList<>();
+		chemoRoomDoors.add(chemoToAnte);
 
 		// Filter creation
 		Filter filterA = new Filter(1, "Airflow Tek", "AFT-24-48-H", "AFTSN-123456", 24.0, 48.0, 6.0);
@@ -239,9 +221,9 @@ public class AppConfig {
 		facility.setContact(poc);
 		facility.setRooms(rooms);
 		
-		anteRoom.setPortals(anteRoomPortals);
-		bufferRoom.setPortals(bufferRoomPortals);
-		chemoRoom.setPortals(chemoRoomPortals);
+		anteRoom.setDoors(anteRoomDoors);
+		bufferRoom.setDoors(bufferRoomDoors);
+		chemoRoom.setDoors(chemoRoomDoors);
 		
 		anteRoom.setRegisters(anteRoomRegisters);
 		bufferRoom.setRegisters(bufferRoomRegisters);

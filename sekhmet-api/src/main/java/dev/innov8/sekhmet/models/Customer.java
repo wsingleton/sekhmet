@@ -3,11 +3,25 @@ package dev.innov8.sekhmet.models;
 import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.Column;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Customer {
 
+	@Id
 	private int id;
+	
+	@Column
 	private String name;
+	
+	@Embedded
 	private PointOfContact contact;
+	
+	@OneToMany
 	private List<Facility> facilities;
 	
 	public Customer() {
