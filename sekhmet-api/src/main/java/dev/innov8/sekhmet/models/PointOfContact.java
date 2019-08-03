@@ -2,15 +2,32 @@ package dev.innov8.sekhmet.models;
 
 import java.util.Objects;
 
-import javax.persistence.Embeddable;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
-@Embeddable
+@Entity
 public class PointOfContact {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
+	
+	@Column
 	private String firstName;
+	
+	@Column
 	private String lastName;
+	
+	@Column
 	private String emailAddress;
+	
+	@Column
 	private String phoneNumber;
+	
+	@Column
 	private String faxNumber;
 
 	public PointOfContact() {
@@ -24,6 +41,24 @@ public class PointOfContact {
 		this.emailAddress = email;
 		this.phoneNumber = phone;
 		this.faxNumber = fax;
+	}
+	
+	public PointOfContact(int id, String fn, String ln, String email, String phone, String fax) {
+		super();
+		this.id = id;
+		this.firstName = fn;
+		this.lastName = ln;
+		this.emailAddress = email;
+		this.phoneNumber = phone;
+		this.faxNumber = fax;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getFirstName() {
@@ -68,7 +103,7 @@ public class PointOfContact {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(emailAddress, faxNumber, firstName, lastName, phoneNumber);
+		return Objects.hash(emailAddress, faxNumber, firstName, id, lastName, phoneNumber);
 	}
 
 	@Override
@@ -81,14 +116,14 @@ public class PointOfContact {
 			return false;
 		PointOfContact other = (PointOfContact) obj;
 		return Objects.equals(emailAddress, other.emailAddress) && Objects.equals(faxNumber, other.faxNumber)
-				&& Objects.equals(firstName, other.firstName) && Objects.equals(lastName, other.lastName)
-				&& Objects.equals(phoneNumber, other.phoneNumber);
+				&& Objects.equals(firstName, other.firstName) && id == other.id
+				&& Objects.equals(lastName, other.lastName) && Objects.equals(phoneNumber, other.phoneNumber);
 	}
 
 	@Override
 	public String toString() {
-		return "PointOfContact [firstName=" + firstName + ", lastName=" + lastName + ", emailAddress=" + emailAddress
-				+ ", phoneNumber=" + phoneNumber + ", faxNumber=" + faxNumber + "]";
+		return "PointOfContact [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", emailAddress="
+				+ emailAddress + ", phoneNumber=" + phoneNumber + ", faxNumber=" + faxNumber + "]";
 	}
 
 }

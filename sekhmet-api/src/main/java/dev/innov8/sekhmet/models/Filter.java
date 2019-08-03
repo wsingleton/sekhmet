@@ -1,15 +1,21 @@
 package dev.innov8.sekhmet.models;
 
+import java.text.DecimalFormat;
 import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Filter {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
 	@Column
@@ -103,7 +109,9 @@ public class Filter {
 	}
 
 	public double getEffectiveFilterArea_sqft() {
-		return (frameWidth - 2) * (frameHeight - 2) / 144;
+		DecimalFormat df = new DecimalFormat("0.000");
+		String filterAreaAsString = df.format((frameWidth - 2) * (frameHeight - 2) / 144);
+		return Double.parseDouble(filterAreaAsString);
 	}
 
 	@Override

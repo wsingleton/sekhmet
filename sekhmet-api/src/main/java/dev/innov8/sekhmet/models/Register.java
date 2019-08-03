@@ -4,18 +4,24 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Register {
 	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
 	@OneToOne
 	@JoinColumn
+	@JsonIgnore
 	private Room room;
 	
 	@OneToOne
@@ -129,8 +135,7 @@ public class Register {
 
 	@Override
 	public String toString() {
-		return "Register [id=" + id + ", room=" + room + ", filter=" + filter + ", height=" + height + ", width="
-				+ width + ", type=" + type + "]";
+		return "Register [id=" + id + ", filter=" + filter + ", height=" + height + ", width=" + width + ", type=" + type + "]";
 	}
 	
 }
