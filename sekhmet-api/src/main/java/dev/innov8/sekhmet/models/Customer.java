@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Customer {
 
@@ -27,6 +29,7 @@ public class Customer {
 	private PointOfContact contact;
 	
 	@OneToMany
+	@JsonIgnore
 	private List<Facility> facilities;
 	
 	public Customer() {

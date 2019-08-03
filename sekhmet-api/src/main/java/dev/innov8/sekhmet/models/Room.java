@@ -14,6 +14,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import dev.innov8.sekhmet.models.portals.Door;
 
 @Entity
@@ -28,6 +30,7 @@ public class Room {
 	
 	@OneToOne
 	@JoinColumn
+	@JsonIgnore 	
 	private Facility facility;
 	
 	@Column
