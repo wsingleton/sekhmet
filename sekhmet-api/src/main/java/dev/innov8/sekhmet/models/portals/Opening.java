@@ -9,6 +9,10 @@ import dev.innov8.sekhmet.models.Portal;
 @DiscriminatorValue("opening")
 public class Opening extends Portal {
 
+	public Opening() {
+		super();
+	}
+	
 	public Opening(int id) {
 		super(id);
 	}

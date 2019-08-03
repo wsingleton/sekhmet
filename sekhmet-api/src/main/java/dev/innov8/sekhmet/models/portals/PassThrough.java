@@ -9,6 +9,10 @@ import dev.innov8.sekhmet.models.Portal;
 @DiscriminatorValue("pass-through")
 public class PassThrough extends Portal {
 
+	public PassThrough() {
+		super();
+	}
+	
 	public PassThrough(int id) {
 		super(id);
 	}
