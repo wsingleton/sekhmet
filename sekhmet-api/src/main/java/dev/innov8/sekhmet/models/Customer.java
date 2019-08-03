@@ -29,7 +29,6 @@ public class Customer {
 	private PointOfContact contact;
 	
 	@OneToMany
-	@JsonIgnore
 	private List<Facility> facilities;
 	
 	public Customer() {
