@@ -26,6 +26,11 @@ public class RoomService {
 	}
 	
 	@Transactional(readOnly=true)
+	public List<Room> getRoomsByFacilityId(int facilityId) {
+		return roomRepo.findByFacilityId(facilityId);
+	}
+	
+	@Transactional(readOnly=true)
 	public Room getRoomById(int id) {
 		Optional<Room> _room = roomRepo.findById(id);
 		if(_room.isPresent()) return _room.get();

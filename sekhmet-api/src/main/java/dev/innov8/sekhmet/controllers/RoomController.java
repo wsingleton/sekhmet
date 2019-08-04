@@ -28,7 +28,12 @@ public class RoomController {
 		return roomService.getAllRooms();
 	}
 	
-	@GetMapping(value="/id/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value="facility/{facilityId}", produces=MediaType.APPLICATION_JSON_VALUE)
+	public List<Room> getRoomsByFacilityId(@PathVariable int facilityId) {
+		return roomService.getRoomsByFacilityId(facilityId);
+	}
+	
+	@GetMapping(value="id/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
 	public Room getRoomById(@PathVariable int id) {
 		return roomService.getRoomById(id);
 	}
