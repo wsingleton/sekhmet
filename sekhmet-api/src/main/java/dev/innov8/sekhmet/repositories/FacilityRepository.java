@@ -9,4 +9,5 @@ import dev.innov8.sekhmet.models.Facility;
 public interface FacilityRepository extends JpaRepository<Facility, Integer> {
 
 	Facility findByName(String name);
+	
 }

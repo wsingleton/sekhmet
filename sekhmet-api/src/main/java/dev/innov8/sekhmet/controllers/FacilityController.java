@@ -31,6 +31,11 @@ public class FacilityController {
 		return facilityService.getAllFacilities();
 	}
 	
+	@GetMapping(value="customer/{customerId}", produces=MediaType.APPLICATION_JSON_VALUE)
+	public List<Facility> getFacilitiesByCustomerId(@PathVariable int customerId) {
+		return facilityService.getFacilitiesByCustomerId(customerId);
+	}
+	
 	@GetMapping(value="id/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
 	public Facility getAllFacilityById(@PathVariable int id) {
 		return facilityService.getFacilityById(id);
