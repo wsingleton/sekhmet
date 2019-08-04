@@ -14,10 +14,16 @@ import dev.innov8.sekhmet.repositories.RoomRepository;
 public class RoomService {
 
 	private RoomRepository roomRepo;
+	private FacilityService facilityService;
 	
 	@Autowired
 	public RoomService(RoomRepository repo) {
 		this.roomRepo = repo;
+	}
+	
+	@Autowired
+	public void setFacilityService(FacilityService service) {
+		this.facilityService = service;
 	}
 	
 	@Transactional(readOnly=true)
@@ -27,7 +33,7 @@ public class RoomService {
 	
 	@Transactional(readOnly=true)
 	public List<Room> getRoomsByFacilityId(int facilityId) {
-		return roomRepo.findByFacilityId(facilityId);
+		return facilityService.getFacilityById(facilityId).getRooms();
 	}
 	
 	@Transactional(readOnly=true)
