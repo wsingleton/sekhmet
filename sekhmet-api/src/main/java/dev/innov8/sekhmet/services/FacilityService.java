@@ -14,16 +14,10 @@ import dev.innov8.sekhmet.repositories.FacilityRepository;
 public class FacilityService {
 
 	private FacilityRepository facilityRepo;
-	private CustomerService customerService;
 	
 	@Autowired
 	public FacilityService(FacilityRepository repo) {
 		this.facilityRepo = repo;
-	}
-	
-	@Autowired
-	public void setCustomerService(CustomerService service) {
-		this.customerService = service;
 	}
 	
 	@Transactional(readOnly=true)
@@ -33,7 +27,7 @@ public class FacilityService {
 	
 	@Transactional(readOnly=true)
 	public List<Facility> getFacilitiesByCustomerId(int customerId) {
-		return customerService.getCustomerById(customerId).getFacilities();
+		return facilityRepo.findByOwnerId(customerId);
 	}
 	
 	@Transactional(readOnly=true)

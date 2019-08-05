@@ -11,5 +11,6 @@ import dev.innov8.sekhmet.models.Register;
 public interface RegisterRepository extends JpaRepository<Register, Integer> {
 
 	List<Register> findByType(String type);
+	List<Register> findByRoomId(int roomId);
 	
 }
