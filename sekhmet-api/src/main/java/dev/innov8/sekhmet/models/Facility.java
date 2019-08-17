@@ -6,14 +6,13 @@ import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Facility {
@@ -28,16 +27,15 @@ public class Facility {
 	@Embedded
 	private Address address;
 	
-	@OneToOne
 	@JoinColumn
-	@JsonIgnore
+	@OneToOne(fetch=FetchType.EAGER)
 	private Customer owner;
 	
-	@OneToOne
 	@JoinColumn
+	@OneToOne(fetch=FetchType.EAGER)
 	private PointOfContact contact;
 	
-	@OneToMany
+	@OneToMany(fetch=FetchType.EAGER)
 	private List<Room> rooms;
 
 	public Facility() {

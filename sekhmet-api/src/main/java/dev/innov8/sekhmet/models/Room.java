@@ -14,8 +14,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import dev.innov8.sekhmet.models.portals.Door;
 
 @Entity
@@ -28,10 +26,11 @@ public class Room {
 	@Column
 	private String name;
 	
-	@OneToOne
-	@JoinColumn
-	@JsonIgnore 	
-	private Facility facility;
+	@Column
+	private double area;
+	
+	@Column 
+	private double volume;
 	
 	@Column
 	private boolean sterile;
@@ -42,6 +41,10 @@ public class Room {
 	@Column
 	private boolean radioactive;
 	
+	@OneToOne
+	@JoinColumn
+	private Facility facility;
+
 	@OneToMany
 	private List<Register> registers;
 	
@@ -70,19 +73,19 @@ public class Room {
 		this.hazardous = hazard;
 		this.radioactive = radio;
 	}
-
-	public Room(int id, String name, Facility facility, boolean sterile, boolean hazard, boolean radio, 
-			List<Register> registers, List<Door> doors, List<Device> devices) {
+	
+	public Room(int id, String name, double area, double volume, boolean sterile, boolean hazardous,
+			boolean radioactive, Facility facility) 
+	{
 		super();
 		this.id = id;
 		this.name = name;
-		this.facility = facility;
+		this.area = area;
+		this.volume = volume;
 		this.sterile = sterile;
-		this.hazardous = hazard;
-		this.radioactive = radio;
-		this.registers = registers;
-		this.doors = doors;
-		this.devices = devices;
+		this.hazardous = hazardous;
+		this.radioactive = radioactive;
+		this.facility = facility;
 	}
 
 	public int getId() {
@@ -101,12 +104,20 @@ public class Room {
 		this.name = name;
 	}
 
-	public Facility getFacility() {
-		return facility;
+	public double getArea() {
+		return area;
 	}
 
-	public void setFacility(Facility facility) {
-		this.facility = facility;
+	public void setArea(double area) {
+		this.area = area;
+	}
+
+	public double getVolume() {
+		return volume;
+	}
+
+	public void setVolume(double volume) {
+		this.volume = volume;
 	}
 
 	public boolean isSterile() {
@@ -131,6 +142,14 @@ public class Room {
 
 	public void setRadioactive(boolean radioactive) {
 		this.radioactive = radioactive;
+	}
+
+	public Facility getFacility() {
+		return facility;
+	}
+
+	public void setFacility(Facility facility) {
+		this.facility = facility;
 	}
 
 	public List<Register> getRegisters() {
@@ -159,7 +178,8 @@ public class Room {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(devices, facility, hazardous, id, name, doors, radioactive, registers, sterile);
+		return Objects.hash(area, devices, doors, facility, hazardous, id, name, radioactive, registers, sterile,
+				volume);
 	}
 
 	@Override
@@ -171,16 +191,18 @@ public class Room {
 		if (!(obj instanceof Room))
 			return false;
 		Room other = (Room) obj;
-		return Objects.equals(devices, other.devices) && Objects.equals(facility, other.facility)
-				&& hazardous == other.hazardous && id == other.id && Objects.equals(name, other.name)
-				&& Objects.equals(doors, other.doors) && radioactive == other.radioactive
-				&& Objects.equals(registers, other.registers) && sterile == other.sterile;
+		return Double.doubleToLongBits(area) == Double.doubleToLongBits(other.area)
+				&& Objects.equals(devices, other.devices) && Objects.equals(doors, other.doors)
+				&& Objects.equals(facility, other.facility) && hazardous == other.hazardous && id == other.id
+				&& Objects.equals(name, other.name) && radioactive == other.radioactive
+				&& Objects.equals(registers, other.registers) && sterile == other.sterile
+				&& Double.doubleToLongBits(volume) == Double.doubleToLongBits(other.volume);
 	}
 
 	@Override
 	public String toString() {
-		return "Room [id=" + id + ", name=" + name + ", facility=" + facility + ", sterile=" + sterile + 
-				", hazardous=" + hazardous + ", radioactive=" + radioactive + "]";
+		return "Room [id=" + id + ", name=" + name + ", area=" + area + ", volume=" + volume + ", sterile=" + sterile
+				+ ", hazardous=" + hazardous + ", radioactive=" + radioactive + ", facility=" + facility + "]";
 	}
 
 }

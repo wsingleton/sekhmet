@@ -1,0 +1,8 @@
+type Facility {
+	id: ID!
+	name: String!
+	address: Address!
+	owner: Customer!
+	contact: PointOfContact!
+	rooms: [Room]
+}

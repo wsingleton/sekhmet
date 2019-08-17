@@ -1,0 +1,19 @@
+type Filter {
+	id: ID!
+	manufacturer: String!
+	model: String!
+	serialNumber: String!
+	frameWidth: Float!
+	frameHeight: Float!
+	frameDepth: Float!
+}
+
+extend type Query {
+	findAllFilters: [Filter]
+	findFiltersByManufacturer(manufacturer: String!): [Filter]
+	findFiltersByModel(model: String!): [Filter]
+	findFiltersByDeviceId(deviceId: Int!): [Filter]
+	findFilterById(filterId: Int!): Filter
+	findFilterBySerialNumber(serial: String!): Filter
+	findFilterByRegisterId(registerId: Int!): Filter
+}

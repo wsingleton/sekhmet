@@ -15,8 +15,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="DEVICE_TYPE")
@@ -37,7 +35,6 @@ public abstract class Device {
 	
 	@OneToOne
 	@JoinColumn
-	@JsonIgnore
 	private Room room;
 	
 	@Column

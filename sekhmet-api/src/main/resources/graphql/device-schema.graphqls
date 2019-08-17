@@ -1,0 +1,20 @@
+type Device {
+	id: ID!
+	manufacturer: String!
+	model: String!
+	serialNumber: String!
+	sterile: Boolean!
+	hazardous: Boolean!
+	radioactive: Boolean!
+	room: Room!
+	filters: [Filter]
+}
+
+extend type Query {
+	findAllDevices: [Device]!
+	findDevicesByManufacturer(manufacturer: String!): [Device]
+	findDevicesByModel(manufacturer: String!): [Device]
+	findDevicesByCriteria(sterile: Boolean = false, hazard: Boolean = false, radio: Boolean = false): [Device]
+	findDeviceById(deviceId: Int!): Device
+}
+

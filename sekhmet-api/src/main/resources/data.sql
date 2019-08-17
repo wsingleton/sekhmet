@@ -15,14 +15,14 @@ INSERT INTO customer_facilities (customer_id, facilities_id)
 VALUES (1, 1);
 
 -- Room Creation
-INSERT INTO room (name, sterile, hazardous, radioactive, facility_id)
-VALUES ('Ante Room', true, false, false, 1);
+INSERT INTO room (name, sterile, hazardous, radioactive, facility_id, area, volume)
+VALUES ('Ante Room', true, false, false, 1, 100.0, 800.0);
 
-INSERT INTO room (name, sterile, hazardous, radioactive, facility_id)
-VALUES ('Buffer Room', true, false, false, 1);
+INSERT INTO room (name, sterile, hazardous, radioactive, facility_id, area, volume)
+VALUES ('Buffer Room', true, false, false, 1, 131.25, 1050.0);
 
-INSERT INTO room (name, sterile, hazardous, radioactive, facility_id)
-VALUES ('Chemo Room', true, true, false, 1);
+INSERT INTO room (name, sterile, hazardous, radioactive, facility_id, area, volume)
+VALUES ('Chemo Room', true, true, false, 1, 96.0, 768.0);
 
 -- Facility-Room association
 INSERT INTO facility_rooms (facility_id, rooms_id)

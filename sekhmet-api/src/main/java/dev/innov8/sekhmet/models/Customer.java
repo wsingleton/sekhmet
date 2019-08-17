@@ -5,6 +5,7 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,7 +27,7 @@ public class Customer {
 	@JoinColumn
 	private PointOfContact contact;
 	
-	@OneToMany
+	@OneToMany(fetch=FetchType.EAGER)
 	private List<Facility> facilities;
 	
 	public Customer() {

@@ -1,0 +1,11 @@
+type Customer {
+	id: ID!
+	name: String!
+	contact: PointOfContact!
+	facilities: [Facility]
+}
+
+extend type Query {
+	findAllCustomers: [Customer]!
+	findCustomerById(customerId: Int!): Customer
+}

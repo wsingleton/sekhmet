@@ -1,0 +1,10 @@
+type Query {
+	
+	findAllFacilities: [Facility]!
+	
+	findAllRegisters: [Register]!
+}
+
+type Mutation {
+
+}

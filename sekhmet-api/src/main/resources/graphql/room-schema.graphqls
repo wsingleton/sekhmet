@@ -1,0 +1,16 @@
+type Room {
+	id: ID!
+	name: String!
+	area: Float!
+	volume: Float!
+	sterile: Boolean!
+	hazardous: Boolean!
+	radioactive: Boolean!
+	facility: Facility!
+	registers: [Register]
+	devices: [Device]
+}
+
+extend type Query {
+	findAllRooms: [Room]!
+}

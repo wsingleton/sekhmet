@@ -1,0 +1,8 @@
+type Register {
+	id: ID!
+	height: Float!
+	width: Float!
+	type: String!
+	room: Room!
+	filter: Filter
+}
